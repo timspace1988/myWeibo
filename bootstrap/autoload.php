@@ -17,6 +17,11 @@ define('LARAVEL_START', microtime(true));
 require __DIR__.'/../vendor/autoload.php';
 
 /*
+*auto load our database select helper file, so that we can call function defined in that file
+*/
+require __DIR__.'/helpers.php';
+
+/*
 |--------------------------------------------------------------------------
 | Include The Compiled Class File
 |--------------------------------------------------------------------------
