@@ -13,6 +13,12 @@ use Auth;
 
 class SessionsController extends Controller
 {
+    public function __construct(){
+        $this->middleware('guest', [
+            'only' => ['create']
+        ]);
+    }
+
     //action of getting sign in page
     public function create(){
         return view('sessions.create');
@@ -32,7 +38,7 @@ class SessionsController extends Controller
 
         if(Auth::attempt($credentials, $request->has('remember'))){
             session()->flash('success', 'Welcome back!');
-            return redirect()->route('users.show', [Auth::user()]);//Auth::user() willl return currently signed in user
+            return redirect()->intended(route('users.show', [Auth::user()]));//Auth::user() willl return currently signed in user
         }else{
             session()->flash('danger', 'Sorry, incorrect email or password');
             return redirect()->back();
