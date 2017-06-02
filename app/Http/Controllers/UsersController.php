@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\User;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -35,6 +36,9 @@ class UsersController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
+
+        //let user signed in after registration
+        Auth::login($user);
 
         session()->flash('success', 'Welcome, your new journey starts here.');
 

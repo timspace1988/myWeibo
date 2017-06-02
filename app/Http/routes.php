@@ -18,7 +18,7 @@ Route::get('/about', 'StaticPagesController@about')->name('about');
 /* sign up page */
 Route::get('/signup', 'UsersController@create')->name('signup');
 
-Route::resource('users', 'UsersController');
+Route::resource('/users', 'UsersController');
 //above codes equals to the following
 /*
 Route::get('/users', 'UsersController@index')->name('users.index');
@@ -29,3 +29,8 @@ Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
 Route::patch('/users/{user}', 'UsersController@update')->name('users.update');
 Route::delete('/users/{user}', 'UsersController@destroy')->name('users.destroy');
 */
+
+//login and logout routes
+Route::get('/login', 'SessionsController@create')->name('login');//get login page
+Route::post('/login', 'SessionsController@store')->name('login');//build login session
+Route::delete('/logout', 'SessionsController@destroy')->name('logout');//logout

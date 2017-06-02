@@ -6,8 +6,33 @@
         <a href="{{route('home')}}" id="logo">My Weibo</a>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{route('help')}}">Help</a></li>
-            <li><a href="#">Sign in</a></li>
+            @if(Auth::check())
+              <li><a href="#">Users list</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  {{Auth::user()->name}} <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{route('users.show', Auth::user()->id)}}">Personal page</a></li>
+                  <li><a href="#">Edit profiles</a></li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="#" id="logout">
+                      <form action="{{route('logout')}}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button class="btn btn-block btn-danger" type="submit" name="button">Sign out</button>
+                      </form>
+
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            @else
+              <li><a href="{{route('help')}}">Help</a></li>
+              <li><a href="#">Sign in</a></li>
+            @endif
+
           </ul>
         </nav>
       </div>
