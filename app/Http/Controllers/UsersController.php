@@ -118,10 +118,10 @@ class UsersController extends Controller
 
     //action of user confirms email addres(activation)
     public function confirmEmail($token){
-        $user = User::where('activation_token', $token)->where('activation_token', '<>', '')->firstOrFail();
+        $user = User::where('activation_token', $token)->firstOrFail();
 
         $user->activated = true;
-        $user->activation_token = "";
+        $user->activation_token = null;
         $user->save();
 
         Auth::login($user);
