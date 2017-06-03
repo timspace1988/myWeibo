@@ -37,7 +37,7 @@ class SessionsController extends Controller
         ];
 
         if(Auth::attempt($credentials, $request->has('remember'))){
-            if(Auth::user()-activated){
+            if(Auth::user()->activated){
                 session()->flash('success', 'Welcome back!');
                 return redirect()->intended(route('users.show', [Auth::user()]));//Auth::user() willl return currently signed in user
             }else{

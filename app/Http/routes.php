@@ -37,3 +37,9 @@ Route::delete('/logout', 'SessionsController@destroy')->name('logout');//logout
 
 //user activation
 Route::get('signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');
+
+//password reset
+Route::get('password/email', 'Auth\PasswordController@getEmail')->name('password.reset');//get page of password-reset-email-send page
+Route::post('password/email', 'Auth\PasswordController@postEmail')->name('password.reset');//operation of send reset email
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset')->name('password.edit');//page of set new password
+Route::post('password/reset', 'Auth\PasswordController@postReset')->name('password.update');//operation of send password reset request
