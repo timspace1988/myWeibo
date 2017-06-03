@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\User;
 use Auth;
+use Mail;
 
 class UsersController extends Controller
 {
@@ -53,12 +54,13 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        //let user signed in after registration
-        Auth::login($user);
+        //send confirmation email
+        $this->sendEmailConfirmationTo($user);
 
-        session()->flash('success', 'Welcome, your new journey starts here.');
+        session()->flash('success', 'We have sent you a confirmation letter, please check your email inbox');
+        return redirect('/');
 
-        return redirect()->route('users.show', [$user]);//in laravel, route() will automatically get $user->id,
+        //return redirect()->route('users.show', [$user]);//in laravel, route() will automatically get $user->id,
         //above equals to return redirect()->route('users.show', [$user->id]);
     }
 
@@ -98,5 +100,32 @@ class UsersController extends Controller
         $user->delete();
         session()->flash('success', 'Selected user has been deleted.');
         return back();
+    }
+
+    //action of sending confirmation letter
+    public function sendEmailConfirmationTo($user){
+        $view = 'emails.confirm';
+        $data = compact('user');
+        $from = 'aufree@estgroupe.com';
+        $name = 'Aufree';
+        $to = $user->email;
+        $subject = "Thank you for your register, please confirm your email";
+
+        Mail::send($view, $data, function($message) use ($from, $name, $to, $subject){
+            $message->from($from, $name)->to($to)->subject($subject);
+        });
+    }
+
+    //action of user confirms email addres(activation)
+    public function confirmEmail($token){
+        $user = User::where('activation_token', $token)->where('activation_token', '<>', '')->firstOrFail();
+
+        $user->activated = true;
+        $user->activation_token = "";
+        $user->save();
+
+        Auth::login($user);
+        session()->flash('success', 'Congratulations, your account has been activated.');
+        return redirect()->route('users.show', compact('user'));
     }
 }
