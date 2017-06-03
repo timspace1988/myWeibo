@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'timspace1988@gmail.com', 'name' => 'JIA'],
+    'from' => ['address' => 'account@myweibo.net', 'name' => 'MyWeibo'],
 
     /*
     |--------------------------------------------------------------------------

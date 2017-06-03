@@ -106,8 +106,8 @@ class UsersController extends Controller
     public function sendEmailConfirmationTo($user){
         $view = 'emails.confirm';
         $data = compact('user');
-        $from = 'aufree@estgroupe.com';
-        $name = 'Aufree';
+        $from = 'account@myweibo.net';
+        $name = 'MyWeibo';
         $to = $user->email;
         $subject = "Thank you for your register, please confirm your email";
 
