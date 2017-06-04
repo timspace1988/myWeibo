@@ -43,3 +43,6 @@ Route::get('password/email', 'Auth\PasswordController@getEmail')->name('password
 Route::post('password/email', 'Auth\PasswordController@postEmail')->name('password.reset');//operation of send reset email
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset')->name('password.edit');//page of set new password
 Route::post('password/reset', 'Auth\PasswordController@postReset')->name('password.update');//operation of send password reset request
+
+//statuses operation
+resource('statuses', 'StatusesController', ['only' => ['store', 'destroy']]);

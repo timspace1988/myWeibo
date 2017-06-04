@@ -37,7 +37,10 @@ class UsersController extends Controller
     //action of showing user's personal page
     public function show($id){
         $user = User::findOrFail($id);
-        return view('users.show', compact('user'));//compact('user') will return ['user' => $user]
+        $statuses = $user->statuses()
+                         ->orderBy('created_at', 'desc')
+                         ->paginate(30);
+        return view('users.show', compact('user', 'statuses'));//compact('user') will return ['user' => $user]
     }
 
     //action of processing user sign up request(post)
@@ -128,4 +131,6 @@ class UsersController extends Controller
         session()->flash('success', 'Congratulations, your account has been activated.');
         return redirect()->route('users.show', compact('user'));
     }
+
+
 }
