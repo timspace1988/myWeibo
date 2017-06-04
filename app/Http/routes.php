@@ -46,3 +46,11 @@ Route::post('password/reset', 'Auth\PasswordController@postReset')->name('passwo
 
 //statuses operation
 resource('statuses', 'StatusesController', ['only' => ['store', 'destroy']]);
+
+//get followings list and followers list page
+Route::get('/users/{id}/followings', 'UsersController@followings')->name('users.followings');
+Route::get('/users/{id}/followers', 'UsersController@followers')->name('users.followers');
+
+//follow and unfollow a user
+Route::post('/users/followers/{id}', 'FollowersController@store')->name('followers.store');
+Route::delete('/users/followers/{id}', 'FollowersController@destroy')->name('followers.destroy');
