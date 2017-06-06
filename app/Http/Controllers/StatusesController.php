@@ -31,4 +31,13 @@ class StatusesController extends Controller
 
         return redirect()->back();
     }
+
+    //action of deleting a status
+    public function destroy($id){
+        $status = Status::findOrFail($id);
+        $this->authorize('destroy', $status);
+        $status->delete();
+        session()->flash('success', 'Status has been deleted.');
+        return redirect()->back();
+    }
 }
