@@ -10,10 +10,10 @@
   </span>
   <span class="content">{{$status->content}}</span>
   @can('destroy', $status)
-    <form action="{{route('statuses.destroy', $status->id)}}" method="post">
-      {{csrf_field()}}
-      {{method_field('DELETE')}}
-      <button type="submit" class="btn btn-sm btn-danger status-delete-btn">Delete</button>
-    </form>
+      <form action="{{ route('statuses.destroy', $status->id) }}" method="POST">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+        <button type="submit" class="btn btn-sm btn-danger status-delete-btn">删除</button>
+      </form>
   @endcan
 </li>
