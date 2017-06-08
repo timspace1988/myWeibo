@@ -33,7 +33,8 @@ class StatusesController extends Controller
     }
 
     //action of deleting a status
-    public function destroy($id){
+    public function destroy($id)
+    {
         $status = Status::findOrFail($id);
         $this->authorize('destroy', $status);
         $status->delete();

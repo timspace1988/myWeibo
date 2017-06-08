@@ -37,11 +37,11 @@ class UsersController extends Controller
     //action of showing user's personal page
     public function show($id){
         $user = User::findOrFail($id);
-        echo "find user";
+
         $statuses = $user->statuses()
                          ->orderBy('created_at', 'desc')
                          ->paginate(30);
-        echo "find statuses";
+
         return view('users.show', compact('user', 'statuses'));//compact('user') will return ['user' => $user]
     }
 
