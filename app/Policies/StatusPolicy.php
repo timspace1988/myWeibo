@@ -14,15 +14,15 @@ class StatusPolicy
         return $user->id === $status->user_id;
     }
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+    // /**
+    //  * Create a new policy instance.
+    //  *
+    //  * @return void
+    //  */
+    // public function __construct()
+    // {
+    //     //
+    // }
 
 
 
