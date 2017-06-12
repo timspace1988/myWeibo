@@ -1,4 +1,4 @@
-<?php use Auth ?>
+<?php use Auth; ?>
 <li id="status-{{$status->id}}">
   <a href="{{ route('users.show', $user->id )}}">
     <img src="{{ $user->gravatar() }}" alt="{{ $user->name }}" class="gravatar"/>
