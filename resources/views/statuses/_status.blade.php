@@ -15,5 +15,5 @@
           {{ method_field('DELETE') }}
           <button type="submit" class="btn btn-sm btn-danger status-delete-btn">Delete</button>
         </form>
-    @endcan
+  @endcan
 </li>
