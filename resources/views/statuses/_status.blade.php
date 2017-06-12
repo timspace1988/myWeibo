@@ -1,3 +1,4 @@
+<?php use Auth ?>
 <li id="status-{{$status->id}}">
   <a href="{{ route('users.show', $user->id )}}">
     <img src="{{ $user->gravatar() }}" alt="{{ $user->name }}" class="gravatar"/>
@@ -9,7 +10,7 @@
     {{ $status->created_at->diffForHumans() }}<!--difForHumans will display the date as 'xx days ago' format-->
   </span>
   <span class="content">{{$status->content}}</span>
-  @can('destroy', $status)
+  @can('destroy', Auth::user())
         <form action="{{ route('statuses.destroy', $status->id) }}" method="POST">
           {{ csrf_field() }}
           {{ method_field('DELETE') }}
