@@ -10,9 +10,25 @@ class StatusPolicy
 {
     use HandlesAuthorization;
 
-    public function destroy(User $user, Status $status)
+    /**
+     * Create a new policy instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        return $user->id === $status->user_id;
+        //
+    }
+
+    // public function destroy(User $user, Status $status)
+    // {
+    //     return $user->id === $status->user_id;
+    // }
+
+    //our status destroy policy, the status could be deleted only when current user is status's owner
+    public function destroy(User $currentUser, Status $status)
+    {
+        return $currentUser->id === $status->user_id;
     }
 
 }
