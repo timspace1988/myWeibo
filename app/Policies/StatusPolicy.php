@@ -28,6 +28,12 @@ class StatusPolicy
     //our status destroy policy, the status could be deleted only when current user is status's owner
     public function destroy(User $currentUser, Status $status)
     {
+        echo "test1<br>";
+
+        var_dump($currentUser);
+        car_dump($status);
+
+        echo $currentUser->id === $status->user_id;
         return $currentUser->id === $status->user_id;
     }
 
