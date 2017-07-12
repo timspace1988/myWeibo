@@ -2,7 +2,7 @@
 <div class="modal fade" id="modal-image-upload">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+      <form id="upload" class="form-horizontal" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">×</button>
@@ -12,7 +12,7 @@
           <div class="form-group">
             <label for="file" class="col-sm-3 control-label">Image</label>
             <div class="col-sm-8">
-              <input type="file" name="image" id="image">
+              <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png" multiple name="files[]" id="files">
             </div>
           </div>
         </div>

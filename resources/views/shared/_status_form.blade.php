@@ -5,6 +5,9 @@
   <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-image-upload">
     <span class="fa fa-image"></span> Image
   </button>
+
   <button type="submit" class="btn btn-primary pull-right">Post</button>
-  @include('statuses._modals')
+
+
 </form>
+@include('statuses._modals')

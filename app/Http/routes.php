@@ -54,3 +54,6 @@ Route::get('/users/{id}/followers', 'UsersController@followers')->name('users.fo
 //follow and unfollow a user
 Route::post('/users/followers/{id}', 'FollowersController@store')->name('followers.store');
 Route::delete('/users/followers/{id}', 'FollowersController@destroy')->name('followers.destroy');
+
+//Upload image
+Route::post('/upload/file', ['middleware' => 'auth', 'uses'=>'UploadController@upload'])->name('upload.file');

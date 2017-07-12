@@ -14,5 +14,38 @@
     </div>
 
     <script src="/js/app.js"></script>
+    <script>
+    $(function(){
+      $('#upload').on('submit', function(e){
+        e.preventDefault();
+        var formData = new FormData(this);
+        // $.each($('#file').files, function(i, file){
+        //   formData.append('files[]', file);
+        // });
+
+        $.ajax({
+          type:"POST",
+          url:"{{ route('upload.file') }}",
+          //dataType: 'json',
+          data:formData,
+          contentType:false,
+          processData: false,
+        //   headers: {
+        //    'X-CSRF-Token': $('#upload input[name="_token"]').val()
+        //  },
+          success:function(data){
+            //alert(data.message);
+            // $('#modal-image-upload').modal('toggle');//Hide the modal dialog
+            // $('.modal-backdrop').remove(); //Hide the backdrop
+            $("#modal-image-upload [data-dismiss='modal']").trigger("click");
+          },
+          error: function(xhr, status, error) {
+            alert(xhr.responseText);
+            alert(error);
+          }
+        });
+      });
+    });
+    </script>
   </body>
 </html>
