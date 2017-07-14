@@ -37,6 +37,7 @@ class UploadController extends Controller
         //
         // }
         //return response()->json(['message' => 'Wrong']);
+        $pathSet = [];
         foreach($files as $file){
             //return response()->json(['message' => 'Wrong']);
             //$path = $file->getClientOriginalName();//this is ne original name uploaded file
@@ -50,11 +51,32 @@ class UploadController extends Controller
 
                 return response()->json(['message' => $result]);
             }
-            // var_dump($path);
+
+            //$pathSet[] = rtrim(config('upload.webpath'), '/') . '/' . ltrim($path, '/');
+            $pathSet[] = $path;
+            $urlSet[] = $this->manager->getWebpath($path);
             // var_dump($realPath);
+            $data = ['pathSet' => $pathSet, 'urlSet' => $urlSet];
         }
 
-        return response()->json(['message' => 'Files has been uploaded']);
+        return response()->json($data);
+
+    }
+
+    public function remove(Request $request){
+        //$path = $request->input('path');
+        $path = $request->path;
+
+        $result = $this->manager->deleteFile($path);
+        if($result === false){
+            return response()->json(['message' => 'Something went wrong']);
+        }else{
+            return response()->json(['message' => 'deleted']);
+        }
+
+        $data = ['message' => $path];
+        //
+        return response()->json($data);
 
     }
 }

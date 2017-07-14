@@ -27,6 +27,16 @@ class UploadManager{
     }
 
     /**
+     * Return full web path to a file
+     * @param string $path
+     * @param string
+     */
+    public function getWebpath($path){
+        $path = rtrim(config('upload.webpath'), '/') . '/' . ltrim($path, '/');
+        return $path;
+    }
+
+    /**
      * Get Mime Type of a file(the file path must be under filesystem's root directory)
      *
      * @param string $path
@@ -61,7 +71,7 @@ class UploadManager{
     public function deleteFile($path){
         $path = $this->cleanPath($path);
 
-        if(!$this->desk->exists($path)){
+        if(!$this->disk->exists($path)){
             return "File '$path' does not exist.";
         }
 
