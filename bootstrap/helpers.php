@@ -1,4 +1,7 @@
 <?php
+use App\Services\UploadManager;
+
+
 function get_db_config(){
     if (getenv('IS_IN_HEROKU')) {
             $url = parse_url(getenv("DATABASE_URL"));
@@ -20,4 +23,5 @@ function get_db_config(){
             ];
         }
 }
+
  ?>

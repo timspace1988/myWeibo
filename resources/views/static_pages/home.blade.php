@@ -6,6 +6,7 @@
       <div class="col-md-8">
         <section class="status_form">
           @include('shared._status_form')
+
         </section>
         <h3>Statuses list</h3>
         @include('shared._feed')
@@ -33,6 +34,6 @@
       </p>
     </div>
   @endif
-
+  @include('statuses._modals')
 
 @stop

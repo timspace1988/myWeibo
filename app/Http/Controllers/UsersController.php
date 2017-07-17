@@ -11,9 +11,13 @@ use App\Models\User;
 use Auth;
 use Mail;
 
+use App\Services\UploadManager;
+
 class UsersController extends Controller
 {
-    public function __construct(){
+    protected $manager;
+    public function __construct(UploadManager $manager){
+        $this->manager = $manager;
         $this->middleware('auth', [
             'only' => ['edit', 'update', 'destroy', 'followings', 'followers']
         ]);
@@ -26,6 +30,7 @@ class UsersController extends Controller
     //action of lising all users
     public function index(){
         $users = User::paginate(30);
+
         return view('users.index', compact('users'));
     }
 
@@ -41,8 +46,9 @@ class UsersController extends Controller
         $statuses = $user->statuses()
                          ->orderBy('created_at', 'desc')
                          ->paginate(30);
+        $uploadManager = $this->manager;
 
-        return view('users.show', compact('user', 'statuses'));//compact('user') will return ['user' => $user]
+        return view('users.show', compact('user', 'statuses', 'uploadManager'));//compact('user') will return ['user' => $user]
     }
 
     //action of processing user sign up request(post)

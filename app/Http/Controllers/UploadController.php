@@ -24,10 +24,21 @@ class UploadController extends Controller
 
         //$files = $_FILES;
         $files = $request->file('files');
+        $cleanFolder = $request->cleanFolder;
         //exit;
         $folder = Auth::user()->id . '_tmp';
 
+        //check if we need to clean the old files.
+        if($cleanFolder !== "cleaned"){
+            $result = $this->manager->deleteDirectory($folder, true);
+            if($result === false){
+                return response()->json(['message' => 'Something went wrong.']);
+            }
+        }
+
         $folderReady = $this->manager->createDirectory($folder);
+
+
 
         if($folderReady === false){
             return response()->json(['message' => 'Something went wrong.']);
@@ -42,7 +53,7 @@ class UploadController extends Controller
             //return response()->json(['message' => 'Wrong']);
             //$path = $file->getClientOriginalName();//this is ne original name uploaded file
             $extension = $file->getClientOriginalExtension();
-            $path = $folder . '/' . uniqid(rand(10,30), true) . '.' . $extension;
+            $path = $folder . '/' . uniqid('', true) . rand(10,30) . '.' . $extension;
             $tmpPath = $file->getRealPath();
             $content = File::get($tmpPath);
 

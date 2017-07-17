@@ -33,7 +33,7 @@ class UploadManager{
      */
     public function getWebpath($path){
         $path = rtrim(config('upload.webpath'), '/') . '/' . ltrim($path, '/');
-        return $path;
+        return url($path);
     }
 
     /**
@@ -46,6 +46,36 @@ class UploadManager{
         return $this->disk->mimeType($path);
         //mimeType() will only search the path under root directory
     }
+
+    /**
+     * Check if a file/directory exists
+     * @param string $name
+     * @return bool
+     */
+     public function exists($name){
+         $name = $this->cleanPath($name);
+         return $this->disk->exists($name);
+     }
+
+     /**
+      * get all fiels in a given directory
+      * @param string $folder
+      * @return array $files
+      */
+     public function getAllFilesAt($folder, $fullPath=false){
+         $folder = $this->cleanPath($folder);
+         $files = $this->disk->files($folder);
+         if($fullPath==true){
+             $fullPathFiles = [];
+             foreach($files as $file){
+                 $fullPathFiles[] = $this->getWebpath($file);
+             }
+             //var_dump($fullPathFiles);
+
+             return $fullPathFiles;
+         }
+         return $files;
+     }
 
     /**
      * Save a file
@@ -126,5 +156,19 @@ class UploadManager{
              return $this->disk->deleteDirectory($folder);
          }
 
+     }
+
+     /**
+      * Move a directory(actuall rename).
+      *
+      * @param string $from
+      * @param string $to
+      * @return bool
+      */
+     public function moveDirectory($from, $to){
+         $from = $this->cleanPath($from);
+         $to = $this->cleanPath($to);
+
+         return $this->disk->move($from, $to);
      }
 }
