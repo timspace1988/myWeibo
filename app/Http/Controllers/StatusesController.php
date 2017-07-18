@@ -38,6 +38,7 @@ class StatusesController extends Controller
             'content' => $request->content
         ]);
         var_dump("1");
+        var_dump($request->all());
         exit();
         // var_dump($request->all());
         // exit();
