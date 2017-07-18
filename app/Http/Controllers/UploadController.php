@@ -18,6 +18,9 @@ class UploadController extends Controller
 
     public function __construct(UploadManager $manager){
         $this->manager = $manager;
+        $this->middleware('auth', [
+            'only' => ['upload', 'remove']
+        ]);
     }
 
     public function upload(Request $request){
