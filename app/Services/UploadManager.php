@@ -171,11 +171,10 @@ class UploadManager{
      public function moveDirectory($from, $to){
          $from = $this->cleanPath($from);
          $to = $this->cleanPath($to);
-         var_dump($from);
-         var_dump($to);
+
          $this->createDirectory($to);
          foreach($this->disk->files($from) as $file){
-             var_dump($file);
+
              $file = $this->cleanPath($file);
              $newFile = str_replace($from, $to, $file);
              $this->disk->move($file, $newFile);
