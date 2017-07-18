@@ -20,6 +20,7 @@
         </section>
       </aside>
     </div>
+    @include('statuses._modals')
   @else
     <div class="jumbotron">
       <h1>Enjoy Weibo</h1>
@@ -34,6 +35,6 @@
       </p>
     </div>
   @endif
-  @include('statuses._modals')
+
 
 @stop

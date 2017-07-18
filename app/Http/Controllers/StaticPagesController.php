@@ -14,7 +14,7 @@ use App\Services\UploadManager;
 
 class StaticPagesController extends Controller
 {
-    public $manager;
+    protected $manager;
     public function __construct(UploadManager $manager){
         $this->manager = $manager;
     }
@@ -25,7 +25,7 @@ class StaticPagesController extends Controller
             $feed_items = Auth::user()->feed()->paginate(30);
         }
         $uploadManager = $this->manager;
-        return view('static_pages/home', compact('feed_items'));
+        return view('static_pages/home', compact('feed_items', 'uploadManager'));
     }
 
     public function help(){
