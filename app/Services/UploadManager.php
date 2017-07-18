@@ -10,7 +10,7 @@ class UploadManager{
 
     public function __construct(){
 
-        $this->disk = Storage::disk('s3');
+        $this->disk = Storage::disk('s3');//config('upload.storage')
         echo "test";
         exit();
         //$this->filesystem = new Filesystem();
