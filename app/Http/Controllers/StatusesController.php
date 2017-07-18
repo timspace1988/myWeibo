@@ -16,10 +16,12 @@ class StatusesController extends Controller
 {
     protected $manager;
     public function __construct(UploadManager $manager){
+        var_dump("5");
         $this->manager = $manager;
         $this->middleware('auth', [
             'only' => ['store', 'destroy']
         ]);
+        var_dump("4");
     }
 
     //action of posting a status
@@ -40,12 +42,12 @@ class StatusesController extends Controller
         // var_dump($request->all());
         // exit();
         if($request->haveImage === "yes"){
-            var_dump("0");
-            exit();
+            // var_dump("0");
+            // exit();
             $result = $this->manager->moveDirectory(Auth::user()->id.'_tmp', $newStatus->id);
-            var_dump("-1";
-            var_dump($result);
-            exit();
+            // var_dump("-1";
+            // var_dump($result);
+            // exit();
             if($result === true){
                 session()->flash('success', 'Your status has been posted.');
             }else{
