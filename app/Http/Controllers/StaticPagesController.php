@@ -14,14 +14,15 @@ use App\Services\UploadManager;
 
 class StaticPagesController extends Controller
 {
-    // protected $manager;
-    // public function __construct(UploadManager $manager){
-    //     $this->manager = $manager;
-    // }
-
-    public function home(){
+    protected $manager;
+    public function __construct(UploadManager $manager){
         echo "test";
         exit();
+        $this->manager = $manager;
+    }
+
+    public function home(){
+
         $feed_items = [];
         if(Auth::check()){
             $feed_items = Auth::user()->feed()->paginate(30);
