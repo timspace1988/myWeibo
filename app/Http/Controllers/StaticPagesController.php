@@ -14,7 +14,7 @@ use App\Services\UploadManager;
 
 class StaticPagesController extends Controller
 {
-    protected $manager;
+    public $manager;
     public function __construct(UploadManager $manager){
         $this->manager = $manager;
     }
