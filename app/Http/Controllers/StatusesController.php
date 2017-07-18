@@ -34,7 +34,7 @@ class StatusesController extends Controller
             'content' => $request->content
         ]);
         var_dump("1");
-        var_dump($request->haveImage);
+        var_dump($request);
         exit();
         if($request->haveImage === "yes"){
             var_dump("0");
