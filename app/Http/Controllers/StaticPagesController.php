@@ -25,7 +25,7 @@ class StaticPagesController extends Controller
             $feed_items = Auth::user()->feed()->paginate(30);
         }
         $uploadManager = $this->manager;
-        return view('static_pages/home', compact('feed_items', 'uploadManager'));
+        return view('static_pages/home', compact('feed_items'));
     }
 
     public function help(){
