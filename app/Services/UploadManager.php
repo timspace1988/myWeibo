@@ -9,7 +9,7 @@ class UploadManager{
     //protected $filesystem;
 
     public function __construct(){
-        $this->disk = Storage::disk();
+        $this->disk = Storage::disk(config('upload.storage'));
         //$this->filesystem = new Filesystem();
     }
 

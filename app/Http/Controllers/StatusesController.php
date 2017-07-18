@@ -53,6 +53,11 @@ class StatusesController extends Controller
         $status = Status::findOrFail($id);
         $this->authorize('destroy', $status);
         $status->delete();
+        //if the given status has images, delete the folder and images
+        $result = $this->manager->deleteDirectory($id, true);
+        // if($result === false){
+        //     session()->flash('info', 'Status has been deleted but failed to delete the images');
+        // }
         session()->flash('success', 'Status has been deleted.');
         return redirect()->back();
     }
