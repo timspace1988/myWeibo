@@ -25,6 +25,7 @@ class StatusesController extends Controller
     //action of posting a status
     public function store(Request $request){
         var_dump("3");
+        exit();
         $this->validate($request, [
             'content' => 'required|max:140'
         ]);
