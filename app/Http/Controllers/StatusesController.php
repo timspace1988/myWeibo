@@ -38,7 +38,7 @@ class StatusesController extends Controller
 
         if($request->haveImage === "yes"){
             var_dump("0");
-            //exit();
+            exit();
             $result = $this->manager->moveDirectory(Auth::user()->id.'_tmp', $newStatus->id);
             var_dump("-1";
             var_dump($result);
