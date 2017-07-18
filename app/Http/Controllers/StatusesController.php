@@ -25,20 +25,20 @@ class StatusesController extends Controller
     //action of posting a status
     public function store(Request $request){
         var_dump("3");
-        exit();
+        //exit();
         $this->validate($request, [
             'content' => 'required|max:140'
         ]);
         var_dump("2");
-        exit();
+        //exit();
         //$user->statuses()->create() will automatically set new status's user_id as $user->id, while Status->create() will not
         $newStatus = Auth::user()->statuses()->create([
             'content' => $request->content
         ]);
         var_dump("1");
         exit();
-        var_dump($request->all());
-        exit();
+        // var_dump($request->all());
+        // exit();
         if($request->haveImage === "yes"){
             var_dump("0");
             exit();
