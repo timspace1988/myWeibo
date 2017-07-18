@@ -29,6 +29,7 @@ class StatusesController extends Controller
             'content' => 'required|max:140'
         ]);
         var_dump("2");
+        exit();
         //$user->statuses()->create() will automatically set new status's user_id as $user->id, while Status->create() will not
         $newStatus = Auth::user()->statuses()->create([
             'content' => $request->content
