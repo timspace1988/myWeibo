@@ -44,11 +44,11 @@ class StatusesController extends Controller
         // exit();
         if($request->haveImage === "yes"){
             var_dump("0");
-            exit();
+            //exit();
             $result = $this->manager->moveDirectory(Auth::user()->id.'_tmp', $newStatus->id);
-            // var_dump("-1";
-            // var_dump($result);
-            // exit();
+            var_dump("-1");
+            var_dump($result);
+            exit();
             if($result === true){
                 session()->flash('success', 'Your status has been posted.');
             }else{
