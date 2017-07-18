@@ -14,10 +14,10 @@ use App\Services\UploadManager;
 
 class StaticPagesController extends Controller
 {
-    protected $manager;
-    public function __construct(UploadManager $manager){
-        $this->manager = $manager;
-    }
+    // protected $manager;
+    // public function __construct(UploadManager $manager){
+    //     $this->manager = $manager;
+    // }
 
     public function home(){
         echo "test";
