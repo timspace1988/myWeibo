@@ -16,8 +16,7 @@ class StaticPagesController extends Controller
 {
     protected $manager;
     public function __construct(UploadManager $manager){
-        echo "test";
-        exit();
+
         $this->manager = $manager;
     }
 
