@@ -24,19 +24,22 @@ class StatusesController extends Controller
 
     //action of posting a status
     public function store(Request $request){
+        var_dump("3");
         $this->validate($request, [
             'content' => 'required|max:140'
         ]);
-
+        var_dump("2");
         //$user->statuses()->create() will automatically set new status's user_id as $user->id, while Status->create() will not
         $newStatus = Auth::user()->statuses()->create([
             'content' => $request->content
         ]);
+        var_dump("1");
+        exit();
 
         if($request->haveImage === "yes"){
             $result = $this->manager->moveDirectory(Auth::user()->id.'_tmp', $newStatus->id);
-            var_dump($result);
-            exit();
+            // var_dump($result);
+            // exit();
             if($result === true){
                 session()->flash('success', 'Your status has been posted.');
             }else{
