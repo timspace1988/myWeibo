@@ -48,7 +48,7 @@ class StatusesController extends Controller
             $result = $this->manager->moveDirectory(Auth::user()->id.'_tmp', $newStatus->id);
             var_dump("-1");
             var_dump($result);
-            exit();
+            //exit();
             if($result === true){
                 session()->flash('success', 'Your status has been posted.');
             }else{
