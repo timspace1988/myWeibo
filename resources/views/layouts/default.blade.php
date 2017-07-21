@@ -14,8 +14,13 @@
     </div>
 
     <script src="/js/app.js"></script>
+    <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
     <script>
     $(function(){
+
+      //alert(twemoji.parse("What a cool string \ud83c\udf88\ud83c\ud83c\udf88\ud83c\ud83c\udf88\ud83c"))
+
+      enableEmoji();
       squareImage();
 
       //bind upload image upload function to modal
@@ -77,6 +82,22 @@
             newWindow.document.write(xhr.responseText);
           }
         });
+      });
+
+      //bind emoji insert
+      $("div.emojis>div>img.emoji").bind("click", function(){
+        var statusInput = $("#status-input");
+        var text = statusInput.val();
+        var emoji = $(this).attr("alt");
+
+        var caretPos = statusInput[0].selectionStart;
+
+        var newText = text.substring(0, caretPos) + emoji + text.substring(caretPos);
+        //var newText = text + emoji;
+        statusInput.val(newText);
+
+        $("#modal-emoji-insert [data-dismiss='modal']").trigger("click");//close the modal dialog
+        //alert(text);
       });
     });
 
@@ -144,6 +165,10 @@
       //alert(path);
       $("#preview-image").attr("src", path);
       $("#modal-image-view").modal("show");
+    }
+
+    function enableEmoji(){
+      twemoji.parse(document.body);
     }
     </script>
   </body>

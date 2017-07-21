@@ -1,6 +1,7 @@
 @extends('layouts.default')
 @section('title', 'Home')
 @section('content')
+
   @if(Auth::check())
     <div class="row">
       <div class="col-md-8">
