@@ -58,3 +58,4 @@ Route::delete('/users/followers/{id}', 'FollowersController@destroy')->name('fol
 //Upload image
 Route::post('/upload/file', ['middleware' => 'auth', 'uses'=>'UploadController@upload'])->name('upload.file');
 Route::delete('/upload/remove',['middleware' => 'auth', 'uses'=>'UploadController@remove'])->name('upload.remove');
+
